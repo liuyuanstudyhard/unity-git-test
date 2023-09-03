@@ -17,10 +17,23 @@ public class Greeter {
   }
 
   public static void main(String[] args) {
-    String language = args[0];
-    String country = args[1];
-    String name = args[2];
-    Greeter greeter = new Greeter(language, country, name);
-    System.out.println(greeter.sayHello());
+    if (args.length >= 3) {
+      String language = args[0];
+      String country = args[1];
+      StringBuilder nameBuilder = new StringBuilder();
+
+      for (int i = 2; i < args.length; i++) {
+        nameBuilder.append(args[i]);
+        if (i < args.length - 1) {
+          nameBuilder.append(" ");
+        }
+      }
+      String name = nameBuilder.toString();
+
+      Greeter greeter = new Greeter(language, country, name);
+      System.out.println(greeter.sayHello());
+    } else {
+      System.out.println("Invalid number of command line arguments.");
+    }
   }
 }
